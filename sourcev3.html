@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Henry Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+:root {
+--glass: rgba(20, 20, 20, 0.75);
+--glass-border: rgba(255, 255, 255, 0.2);
+--rainbow: linear-gradient(90deg, #a8edea, #fed6e3, #fac1ff, #d4fc79, #96e6a1, #a8edea);
+--jd-gradient: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+}
+body {
+margin: 0; padding: 0; background: #000;
+font-family: 'Montserrat', sans-serif; color: #fff;
+overflow-x: hidden; -webkit-font-smoothing: antialiased;
+}
+#jsi-flying-fish-container {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+z-index: -1; background: #050505;
+}
+.main-wrapper { max-width: 900px; margin: 40px auto; padding: 20px; position: relative; z-index: 1; }
+.glass-card {
+background: var(--glass);
+backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+border: 1px solid var(--glass-border);
+border-radius: 25px; padding: 35px; margin-bottom: 25px;
+box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+.rainbow-text {
+background: var(--rainbow); background-size: 200% auto;
+-webkit-background-clip: text; -webkit-text-fill-color: transparent;
+animation: rainbow_move 4s linear infinite; font-weight: 800;
+}
+@keyframes rainbow_move { to { background-position: 200% center; } }
+.profile-header { display: flex; align-items: center; gap: 40px; }
+.avatar-section { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.avatar-wrap { position: relative; width: 150px; height: 150px; }
+.avatar-img { width: 110px; height: 110px; border-radius: 50%; border: 3px solid #fff; position: absolute; top: 20px; left: 20px; z-index: 2; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+.avatar-frame { position: absolute; width: 170px; height: 170px; top: -10px; left: -10px; z-index: 3; pointer-events: none; }
+.henry-gaming { 
+margin-top: 10px; 
+font-family: 'Orbitron', sans-serif; 
+font-size: 0.9rem; 
+letter-spacing: 1px;
+text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+.social-links { display: flex; gap: 12px; margin-top: 20px; }
+.social-item {
+width: 44px; height: 44px; background: rgba(255, 255, 255, 0.12);
+display: flex; align-items: center; justify-content: center;
+border-radius: 12px; color: #fff; border: 1px solid var(--glass-border);
+transition: 0.4s; text-decoration: none; backdrop-filter: blur(5px);
+}
+.social-item:hover { background: rgba(255, 255, 255, 0.25); transform: translateY(-5px); color: #fff; }
+.jd-music-container {
+margin: 30px 0 10px 0; padding: 20px; background: rgba(0, 0, 0, 0.3);
+border-radius: 20px; border: 1px solid var(--glass-border);
+}
+#contribution-grid { display: grid; grid-template-columns: repeat(52, 1fr); grid-template-rows: repeat(7, 1fr); gap: 3px; }
+.dot { aspect-ratio: 1/1; border-radius: 2px; background: rgba(255,255,255,0.05); }
+.dot.jd-active { background-image: var(--jd-gradient); background-size: 800% 800%; animation: jd_glow 2s linear infinite; }
+@keyframes jd_glow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.info-item { font-size: 0.9rem; font-weight: 700; padding: 5px 0; }
+.info-item i { width: 25px; color: #4facfe; margin-right: 5px; }
+.skill-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.progress-box { height: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-top: 8px; border: 1px solid rgba(255,255,255,0.05); }
+.progress-bar { height: 100%; background: var(--rainbow); background-size: 200% auto; animation: rainbow_move 4s linear infinite; }
+@media (max-width: 768px) {
+.profile-header { flex-direction: column; text-align: center; }
+.info-grid, .skill-list { grid-template-columns: 1fr; }
+#contribution-grid { grid-template-columns: repeat(26, 1fr); }
+.avatar-wrap { margin-bottom: 20px; }
+}
+</style>
+</head>
+<body>
+<div id="jsi-flying-fish-container"></div>
+<div class="main-wrapper">
+<div class="glass-card">
+<div class="profile-header">
+<div class="avatar-section">
+<div class="avatar-wrap">
+<img src="https://raw.githubusercontent.com/WusThanhDieu/Profile-ThanhDieu.Com-V5-Tester/refs/heads/main/res/v5/img/avatar.gif" class="avatar-img">
+<img src="https://raw.githubusercontent.com/WusThanhDieu/Profile-ThanhDieu.Com-V5-Tester/refs/heads/main/res/v5/img/crown/mong-vuot-rong.png" class="avatar-frame">
+</div>
+<div class="henry-gaming rainbow-text">Hello everyone. I'm Henry Dev</div>
+</div>
+<div class="user-info">
+<h1 class="rainbow-text" style="font-size: 3rem; margin: 0; line-height: 1;">Henry<span style="color:#ff416c">Net</span></h1>
+<div class="rainbow-text" style="font-size: 1.1rem; margin: 10px 0; font-weight: 600;">Full Stack Developer</div>
+<p class="rainbow-text" style="font-size: 0.8rem; opacity: 0.8; letter-spacing: 1px;">#henry_developer_fullstack</p>
+<div class="social-links">
+<a href="#" class="social-item"><i class="fab fa-facebook-f"></i></a>
+<a href="#" class="social-item"><i class="fab fa-github"></i></a>
+<a href="#" class="social-item"><i class="fab fa-telegram-plane"></i></a>
+<a href="#" class="social-item"><i class="fab fa-tiktok"></i></a>
+<a href="#" class="social-item"><i class="fas fa-code-compare"></i></a>
+</div>
+</div>
+</div>
+<div class="jd-music-container">
+<div id="contribution-grid"></div>
+</div>
+</div>
+<div class="glass-card">
+<h5 class="rainbow-text mb-4"><i class="fa fa-user-circle"></i> ABOUT ME.</h5>
+<div class="info-grid">
+<div class="info-item rainbow-text"><i class="fa fa-calendar"></i> 15/05/2x10 (Kim Ngưu)</div>
+<div class="info-item rainbow-text"><i class="fa fa-briefcase"></i> Dev Fullstack & Security</div>
+<div class="info-item rainbow-text"><i class="fa fa-heart"></i> Lập trình, Nghe nhạc, Code</div>
+<div class="info-item rainbow-text"><i class="fa fa-map-marker"></i> TP.Vinh Nghệ An, Việt Nam</div>
+<div class="info-item rainbow-text"><i class="fa fa-envelope"></i> henrynet1337@gmail.com</div>
+<div class="info-item rainbow-text"><i class="fa fa-paper-plane"></i> t.me/henrynet1337</div>
+<div class="info-item rainbow-text"><i class="fa fa-terminal"></i> Thích code Dạo, Hay Fake Style</div>
+<div class="info-item rainbow-text"><i class="fa fa-shield-halved"></i> Đang phát triển Anti-DDoS</div>
+</div>
+</div>
+<div class="glass-card">
+<h5 class="rainbow-text mb-4"><i class="fa fa-code"></i> SKILL LANGUAGE.</h5>
+<div class="skill-list">
+<div class="skill-item">
+<div class="d-flex justify-content-between rainbow-text"><span>HTML | CSS | JS</span><span>95%</span></div>
+<div class="progress-box"><div class="progress-bar" style="width: 95%"></div></div>
+</div>
+<div class="skill-item">
+<div class="d-flex justify-content-between rainbow-text"><span>PYTHON (Security)</span><span>90%</span></div>
+<div class="progress-box"><div class="progress-bar" style="width: 90%"></div></div>
+</div>
+<div class="skill-item">
+<div class="d-flex justify-content-between rainbow-text"><span>NODE.JS / TS</span><span>85%</span></div>
+<div class="progress-box"><div class="progress-bar" style="width: 85%"></div></div>
+</div>
+<div class="skill-item">
+<div class="d-flex justify-content-between rainbow-text"><span>DATABASE (SQL)</span><span>88%</span></div>
+<div class="progress-box"><div class="progress-bar" style="width: 88%"></div></div>
+</div>
+</div>
+</div>
+<footer style="text-align: center; padding: 20px;" class="rainbow-text">
+COPYRIGHT © 2026 HENRY DEVELOPER - ALL RIGHTS RESERVED
+</footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+const grid = document.getElementById('contribution-grid');
+const dots = [];
+const rows = 7, cols = 52;
+for (let i = 0; i < rows * cols; i++) {
+const dot = document.createElement('div');
+dot.className = 'dot';
+grid.appendChild(dot);
+dots.push(dot);
+}
+function jdVisualizer() {
+dots.forEach(d => d.classList.remove('jd-active'));
+for (let c = 0; c < cols; c++) {
+const h = Math.floor(Math.random() * rows);
+for (let r = 0; r <= h; r++) {
+const idx = (rows - 1 - r) * cols + c;
+if (dots[idx]) dots[idx].classList.add('jd-active');
+}
+}
+}
+setInterval(jdVisualizer, 130);
+var RENDERER = {
+POINT_INTERVAL: 5, FISH_COUNT: 3, MAX_INTERVAL_COUNT: 50, INIT_HEIGHT_RATE: 0.5, THRESHOLD: 50,
+init: function() { this.setParameters(); this.reconstructMethods(); this.setup(); this.bindEvent(); this.render() },
+setParameters: function() {
+this.$window = $(window); this.$container = $("#jsi-flying-fish-container"); this.$canvas = $("<canvas />");
+this.context = this.$canvas.appendTo(this.$container).get(0).getContext("2d");
+this.points = []; this.fishes = []; this.watchIds = [];
+},
+createSurfacePoints: function() {
+var count = Math.round(this.width / this.POINT_INTERVAL);
+this.pointInterval = this.width / (count - 1);
+this.points.push(new SURFACE_POINT(this, 0));
+for (var i = 1; i < count; i++) {
+var point = new SURFACE_POINT(this, i * this.pointInterval), previous = this.points[i - 1];
+point.setPreviousPoint(previous); previous.setNextPoint(point); this.points.push(point);
+}
+},
+reconstructMethods: function() {
+this.watchWindowSize = this.watchWindowSize.bind(this); this.jdugeToStopResize = this.jdugeToStopResize.bind(this);
+this.startEpicenter = this.startEpicenter.bind(this); this.moveEpicenter = this.moveEpicenter.bind(this);
+this.reverseVertical = this.reverseVertical.bind(this); this.render = this.render.bind(this);
+},
+setup: function() {
+this.points.length = 0; this.fishes.length = 0; this.watchIds.length = 0; this.intervalCount = this.MAX_INTERVAL_COUNT;
+this.width = this.$container.width(); this.height = this.$container.height();
+this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500;
+this.$canvas.attr({ width: this.width, height: this.height });
+this.reverse = false; this.fishes.push(new FISH(this)); this.createSurfacePoints();
+},
+watchWindowSize: function() { this.clearTimer(); this.tmpWidth = this.$window.width(); this.tmpHeight = this.$window.height(); this.watchIds.push(setTimeout(this.jdugeToStopResize, 300)); },
+clearTimer: function() { while (this.watchIds.length > 0) { clearTimeout(this.watchIds.pop()) } },
+jdugeToStopResize: function() { var width = this.$window.width(), height = this.$window.height(), stopped = (width == this.tmpWidth && height == this.tmpHeight); this.tmpWidth = width; this.tmpHeight = height; if (stopped) { this.setup() } },
+bindEvent: function() { this.$window.on("resize", this.watchWindowSize); this.$container.on("mouseenter", this.startEpicenter); this.$container.on("mousemove", this.moveEpicenter); this.$container.on("click", this.reverseVertical); },
+getAxis: function(event) { var offset = this.$container.offset(); return { x: event.clientX - offset.left + this.$window.scrollLeft(), y: event.clientY - offset.top + this.$window.scrollTop() } },
+startEpicenter: function(event) { this.axis = this.getAxis(event) },
+moveEpicenter: function(event) { var axis = this.getAxis(event); if (!this.axis) { this.axis = axis } this.generateEpicenter(axis.x, axis.y, axis.y - this.axis.y); this.axis = axis; },
+generateEpicenter: function(x, y, velocity) { if (y < this.height / 2 - this.THRESHOLD || y > this.height / 2 + this.THRESHOLD) { return } var index = Math.round(x / this.pointInterval); if (index < 0 || index >= this.points.length) { return } this.points[index].interfere(y, velocity); },
+reverseVertical: function() { this.reverse = !this.reverse; for (var i = 0, count = this.fishes.length; i < count; i++) { this.fishes[i].reverseVertical() } },
+controlStatus: function() { for (var i = 0, count = this.points.length; i < count; i++) { this.points[i].updateSelf() } for (var i = 0, count = this.points.length; i < count; i++) { this.points[i].updateNeighbors() } if (this.fishes.length < this.fishCount) { if (--this.intervalCount == 0) { this.intervalCount = this.MAX_INTERVAL_COUNT; this.fishes.push(new FISH(this)) } } },
+render: function() {
+requestAnimationFrame(this.render); this.controlStatus();
+this.context.clearRect(0, 0, this.width, this.height);
+this.context.fillStyle = "rgba(255, 255, 255, 0.22)";
+for (var i = 0, count = this.fishes.length; i < count; i++) { this.fishes[i].render(this.context) }
+this.context.save(); this.context.globalCompositeOperation = "xor"; this.context.beginPath(); this.context.moveTo(0, this.reverse ? 0 : this.height);
+for (var i = 0, count = this.points.length; i < count; i++) { this.points[i].render(this.context) }
+this.context.lineTo(this.width, this.reverse ? 0 : this.height); this.context.closePath(); this.context.fill(); this.context.restore();
+}
+};
+var SURFACE_POINT = function(renderer, x) { this.renderer = renderer; this.x = x; this.init() };
+SURFACE_POINT.prototype = {
+SPRING_CONSTANT: 0.03, SPRING_FRICTION: 0.9, WAVE_SPREAD: 0.3, ACCELARATION_RATE: 0.01,
+init: function() { this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE; this.height = this.initHeight; this.fy = 0; this.force = { previous: 0, next: 0 } },
+setPreviousPoint: function(previous) { this.previous = previous }, setNextPoint: function(next) { this.next = next },
+interfere: function(y, velocity) { this.fy = this.renderer.height * this.ACCELARATION_RATE * ((this.renderer.height - this.height - y) >= 0 ? -1 : 1) * Math.abs(velocity) },
+updateSelf: function() { this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height); this.fy *= this.SPRING_FRICTION; this.height += this.fy },
+updateNeighbors: function() { if (this.previous) { this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height) } if (this.next) { this.force.next = this.WAVE_SPREAD * (this.height - this.next.height) } },
+render: function(context) { if (this.previous) { this.previous.height += this.force.previous; this.previous.fy += this.force.previous } if (this.next) { this.next.height += this.force.next; this.next.fy += this.force.next } context.lineTo(this.x, this.renderer.height - this.height); }
+};
+var FISH = function(renderer) { this.renderer = renderer; this.init() };
+FISH.prototype = {
+GRAVITY: 0.4,
+init: function() { this.direction = Math.random() < 0.5; this.x = this.direction ? (this.renderer.width + this.renderer.THRESHOLD) : -this.renderer.THRESHOLD; this.vx = (Math.random() * 5 + 3) * (this.direction ? -1 : 1); this.y = (Math.random() * this.renderer.height * 0.3) + (this.renderer.height * 0.6); this.vy = Math.random() * -3 - 2; this.ay = Math.random() * -0.15 - 0.05; this.isOut = false; },
+reverseVertical: function() { this.isOut = !this.isOut; this.ay *= -1 },
+controlStatus: function(context) { this.previousY = this.y; this.x += this.vx; this.y += this.vy; this.vy += this.ay; if (this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE) { this.vy += this.GRAVITY; this.isOut = true } else { this.isOut = false } this.renderer.generateEpicenter(this.x, this.y, this.y - this.previousY); if (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD || this.vx < 0 && this.x < -this.renderer.THRESHOLD) { this.init() } },
+render: function(context) { context.save(); context.translate(this.x, this.y); context.rotate(Math.PI + Math.atan2(this.vy, this.vx)); context.scale(1, this.direction ? 1 : -1); context.beginPath(); context.moveTo(-25, 0); context.bezierCurveTo(-15, 12, 10, 8, 30, 0); context.bezierCurveTo(10, -8, -15, -12, -25, 0); context.fill(); context.restore(); this.controlStatus(context); }
+};
+$(function() { RENDERER.init() });
+</script>
+</body>
+</html>
