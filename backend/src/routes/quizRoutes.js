@@ -1,0 +1,2 @@
+import { Router } from 'express';import { createQuiz, deleteQuiz, listQuizzes, submitQuiz, updateQuiz } from '../controllers/index.js';import { adminOnly, protect } from '../middleware/auth.js';
+const r=Router();r.get('/',protect,listQuizzes);r.post('/',protect,adminOnly,createQuiz);r.put('/:id',protect,adminOnly,updateQuiz);r.delete('/:id',protect,adminOnly,deleteQuiz);r.post('/:id/submit',protect,submitQuiz);export default r;
