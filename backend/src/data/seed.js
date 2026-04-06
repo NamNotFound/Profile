@@ -1,0 +1,12 @@
+import dotenv from 'dotenv';import mongoose from 'mongoose';import { connectDB } from '../config/db.js';import { Achievement, FlashcardDeck, Quiz, RoadmapNode, User } from '../models/index.js';
+dotenv.config();
+await connectDB();
+await Promise.all([User.deleteMany(),Quiz.deleteMany(),FlashcardDeck.deleteMany(),RoadmapNode.deleteMany(),Achievement.deleteMany()]);
+const admin = await User.create({ name:'Admin', email:'admin@learnquest.dev', password:'Admin123!', role:'admin', xp:500, level:3 });
+await User.create({ name:'Learner', email:'learner@learnquest.dev', password:'Learner123!', xp:120, level:1 });
+await Quiz.create({ title:'JavaScript Basics', topic:'JavaScript', questions:[{prompt:'typeof null?',options:['null','object','number','undefined'],correctOptionIndex:1,timeLimitSec:20}] });
+await FlashcardDeck.create({ title:'React Deck', owner:admin._id, isPublic:true, cards:[{front:'What is JSX?',back:'A syntax extension.'}] });
+await RoadmapNode.create([{ title:'HTML Foundations', order:1 },{ title:'CSS Layouts', order:2 }]);
+await Achievement.create([{ code:'FIRST_QUIZ', title:'First Quiz', description:'Complete first quiz', xpReward:50, criteria:'quizzesCompleted>=1' }]);
+console.log('Seed complete');
+await mongoose.disconnect();
