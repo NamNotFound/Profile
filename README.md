@@ -84,7 +84,7 @@ npm run dev
 3. Deploy `backend` folder to Render/Railway:
    - Build command: `npm install`
    - Start command: `npm start`
-   - Env: `MONGO_URI`, `JWT_SECRET`, `CLIENT_ORIGIN`, `OPENAI_API_KEY`
+   - Env: `MONGO_URI`, `JWT_SECRET`, `CLIENT_ORIGIN`, `GROK_API_KEY`
 4. Deploy `frontend` folder to Vercel:
    - Framework: Vite
    - Root Directory: `frontend`
