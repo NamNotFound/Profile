@@ -23,7 +23,7 @@ export const listNotes = async (req,res)=> res.json(await Note.find({owner:req.u
 export const saveNote = async (req,res)=>{ const keywords = ((req.body.markdown||'').match(/[A-Za-z]{5,}/g)||[]).slice(0,8); const doc = req.params.id ? await Note.findOneAndUpdate({_id:req.params.id,owner:req.user._id},{...req.body,keywords},{new:true}) : await Note.create({...req.body,owner:req.user._id,keywords}); res.status(201).json(doc); };
 
 export const leaderboard = async (_req,res)=> res.json(await User.find().sort({xp:-1}).limit(20).select('name avatar xp level dailyStreak'));
-export const tutor = async (req,res)=> res.json({mode:process.env.OPENAI_API_KEY?'stub':'fallback',answer: `Tutor: ${req.body.question}. Suggested next topic: async/await.`});
+export const tutor = async (req,res)=> res.json({mode:process.env.GROK_API_KEY?'stub':'fallback',answer: `Tutor: ${req.body.question}. Suggested next topic: async/await.`});
 export const adminStats = async (_req,res)=> res.json({users:await User.countDocuments(),quizzes:await Quiz.countDocuments(),flashcards:await FlashcardDeck.countDocuments(),roadmapNodes:await RoadmapNode.countDocuments()});
 export const adminUsers = async (_req,res)=> res.json(await User.find().select('-password'));
 
